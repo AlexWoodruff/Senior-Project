@@ -140,6 +140,8 @@ async function bestFirst() {
         status: grid[startPointCoord[1]][startPointCoord[0]],
         priority: 999
     };
+    //timer
+    const start = Date.now();
 
     //console.log("dft: " + location.distanceFromTop);
     //console.log("dfl: " + location.distanceFromLeft);
@@ -147,12 +149,17 @@ async function bestFirst() {
     var queue = [location];
     while (queue.length > 0) {
         var currentLocation = queue.shift();
-        await sleep(delay);
-        console.log(queue);
+        if (delay > 0) {
+            await sleep(delay);
+        }
+        //console.log(queue);
         //explore up
         var newLocation = exploreBestFirst('up', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             //console.log(newLocation);
@@ -162,7 +169,10 @@ async function bestFirst() {
         //explore down
         var newLocation = exploreBestFirst('down', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             //console.log(newLocation);
@@ -172,7 +182,10 @@ async function bestFirst() {
         //explore left
         var newLocation = exploreBestFirst('left', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             //console.log(newLocation);
@@ -182,18 +195,22 @@ async function bestFirst() {
         //explore right
         var newLocation = exploreBestFirst('right', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             //console.log(newLocation);
             queue = enqueue(queue, newLocation);
         }
 
-
-
         var newLocation = exploreBestFirst('upRight', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             //console.log(newLocation);
@@ -202,7 +219,10 @@ async function bestFirst() {
 
         var newLocation = exploreBestFirst('downRight', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             //console.log(newLocation);
@@ -211,7 +231,10 @@ async function bestFirst() {
 
         var newLocation = exploreBestFirst('upLeft', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             //console.log(newLocation);
@@ -220,13 +243,19 @@ async function bestFirst() {
 
         var newLocation = exploreBestFirst('downLeft', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             //console.log(newLocation);
             queue = enqueue(queue, newLocation);
         }
     }
+    alert("no valid path");
+    console.log("no valid path");
+    return;
 }
 
 function exploreBestFirst(direction, currentLocation) {
@@ -307,7 +336,9 @@ async function colorPath(end) {
 
     for (var i = 0; i < originalLength - 1; i++) {
         var direction = path.shift();
-        await sleep(delay);
+        if (delay > 0) {
+            await sleep(delay);
+        }
         //console.log(path.length);
         if (direction == 'up') {
             currentDistanceFromTop--;
@@ -429,18 +460,26 @@ async function breadthFirst() {
         status: grid[startPointCoord[1]][startPointCoord[0]]
     };
 
+    //timer
+    const start = Date.now();
+
     //console.log("dft: " + location.distanceFromTop);
     //console.log("dfl: " + location.distanceFromLeft);
 
     var queue = [location];
     while (queue.length > 0) {
         var currentLocation = queue.shift();
-        await sleep(delay);
+        if (delay > 0) {
+            await sleep(delay);
+        }
 
         //explore up
         var newLocation = explore('up', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             queue.push(newLocation);
@@ -449,7 +488,10 @@ async function breadthFirst() {
         //explore down
         var newLocation = explore('down', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             queue.push(newLocation);
@@ -458,7 +500,10 @@ async function breadthFirst() {
         //explore left
         var newLocation = explore('left', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             queue.push(newLocation);
@@ -467,7 +512,10 @@ async function breadthFirst() {
         //explore right
         var newLocation = explore('right', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             queue.push(newLocation);
@@ -476,7 +524,10 @@ async function breadthFirst() {
         //explore up to the right
         var newLocation = explore('upRight', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             queue.push(newLocation);
@@ -485,7 +536,10 @@ async function breadthFirst() {
         // explore up to the left
         var newLocation = explore('upLeft', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             queue.push(newLocation);
@@ -494,7 +548,10 @@ async function breadthFirst() {
         // explore down to the left
         var newLocation = explore('downLeft', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             queue.push(newLocation);
@@ -503,7 +560,10 @@ async function breadthFirst() {
         // explore down to the right
         var newLocation = explore('downRight', currentLocation);
         if (newLocation.status === 'end') {
-            colorPath(newLocation);
+            const end = Date.now();
+            await colorPath(newLocation);
+            console.log(`Execution time: ${end - start} ms`);
+            $("#elapsedTime").html(end - start);
             return newLocation.path;
         } else if (newLocation.status === 'empty') {
             queue.push(newLocation);
@@ -511,6 +571,7 @@ async function breadthFirst() {
     }
     //no valid path
     alert("no valid path");
+    console.log("no valid path");
     return false;
 }
 
@@ -642,12 +703,14 @@ $(document).ready(function () {
     $(".grid").on('mousedown', function () {
         mouseisDown = true;
         var thisBox = jQuery(this).attr("id");
-        console.log("clicked on grid at ID: " + thisBox + ", status: " + grid[getDistanceFromTop(thisBox)][getDistanceFromLeft(thisBox)]);
+        //console.log("clicked on grid at ID: " + thisBox + ", status: " + grid[getDistanceFromTop(thisBox)][getDistanceFromLeft(thisBox)]);
+        /*
         if (isEnd && isStart) {
             console.log("distance from end: " + getDistanceFromEnd(thisBox));
             console.log("distance from start: " + getDistanceFromStart(thisBox));
             console.log("weight: " + getWeight(thisBox));
         }
+        */
         currentDistanceFromLeft = getDistanceFromLeft(thisBox);
         currentDistanceFromTop = getDistanceFromTop(thisBox);
         //console.log(currentDistanceFromLeft);
@@ -782,7 +845,7 @@ $(document).ready(function () {
     });
 
     $(".setDelay").click(function () {
-        delay = prompt("Set delay in miliseconds (default: 1)");
+        delay = prompt("Set delay in miliseconds (current: " + delay + "ms)");
     });
 
     //log for debugging
