@@ -7,14 +7,15 @@ add a start and end point, draw a maze, choose a pathfinding algorithm and then 
 you can also make the delay between searches longer if you really wanna watch it move
 load up some pre-made maps if you don't wanna draw 
 currently there is no easy way to save a maze you draw, instructions to do so below:
-  open the HTML
-  inspect > open console
-  refresh page to fix grid sizing
-  draw the maze you wish to save
-  right click on console to clear log 
-  type: console.log(grid)
-  right click on console to save
-  save as a .txt in appropriate mazes folder
+<br><br>
+  open the HTML<br>
+  inspect > open console<br>
+  refresh page to fix grid sizing<br>
+  draw the maze you wish to save<br>
+  right click on console to clear log <br>
+  type: console.log(grid)<br>
+  right click on console to save<br>
+  save as a .txt in appropriate mazes folder<br>
 
 
   
