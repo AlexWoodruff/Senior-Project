@@ -13,7 +13,7 @@ currently there is no easy way to save a maze you draw, instructions to do so be
   refresh page to fix grid sizing<br>
   draw the maze you wish to save<br>
   right click on console to clear log <br>
-  type: console.log(grid)<br>
+  type: grid.toString()<br>
   right click on console to save<br>
   save as a .txt in appropriate mazes folder<br>
 
