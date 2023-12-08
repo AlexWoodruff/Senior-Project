@@ -6,7 +6,7 @@ Just a fun toy to play with,
 add a start and end point, draw a maze, choose a pathfinding algorithm and then run<br>
 you can also make the delay between searches longer if you really wanna watch it move<br>
 load up some pre-made maps if you don't wanna draw <br>
-currently there is no easy way to save a maze you draw, instructions to do so below:
+currently the only way to save a maze you have drawn is below:
 <br><br>
   open the HTML<br>
   inspect > open console<br>
